@@ -137,6 +137,7 @@ class WorldCreatorBase:
 
         prevWorld = self.world
         newObjInfo = self.createObject(object, parent, parentUid, objKey, dynamic, parentIsObj = parentIsObj, fileName = fileName, actualParentObj = actualParentObj)
+        print newObjInfo
         if newObjInfo:
             (newObj, newActualParent) = newObjInfo
         else:
@@ -172,6 +173,7 @@ class WorldCreatorBase:
             self.world = prevWorld
 
 
+
     def createObject(self, object, parent, parentUid, objKey, dynamic, parentIsObj = False, fileName = None, actualParentObj = None):
         objType = object.get('Type')
         self.notify.debug('createObject: type = %s' % objType)
@@ -184,7 +186,6 @@ class WorldCreatorBase:
             return None
 
         return objType
-
 
     def openFile(self, filename):
         objectStruct = None

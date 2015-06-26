@@ -1216,6 +1216,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
 
     def handleConfirmDone(self, done):
+        print 'handleConfirmDone'
         self.guiConfirmDoneBox.destroy()
         self.guiConfirmDoneBox = None
         if done == DGG.DIALOG_CANCEL:
@@ -1228,8 +1229,10 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
 
         self.nameGui._checkTypeANameAsPickAName()
         if hasattr(base, 'pe'):
+            print 'base has pe'
             self._handleNameOK()
         elif self.nameGui.hasCustomName():
+            print 'has custom name'
             if self._waitForServerDlg:
                 self._waitForServerDlg.destroy()
                 self._waitForServerDlg = None
@@ -1237,6 +1240,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
             self._waitForServerDlg = PDialog.PDialog(text = PLocalizer.MakeAPirateWait, style = OTPDialog.NoButtons)
             self.nameGui.getTypeANameProblem(self._handleNameProblem)
         else:
+            print 'else handleNameOk'
             self._handleNameOK()
 
 
@@ -1319,11 +1323,15 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
                 base.transitions.fadeOut(finishIval = Func(createAv))
 
         if self.nameGui.customName and not (self.isNPCEditor) and not (self.confirmTempName):
+            print 'confirmTempName'
             self.confirmTempName = PDialog.PDialog(text = PLocalizer.TempNameIssued, style = OTPDialog.Acknowledge, command = acknowledgeTempName)
         elif self.isTutorial and self.isNPCEditor or self.wantNPCViewer:
+            print 'sendDone'
             base.transitions.fadeOut(finishIval = Func(sendDone))
         else:
+            print 'createAv'
             base.transitions.fadeOut(finishIval = Func(createAv))
+        print 'end of name ok'
 
 
     def toggleSlide(self):

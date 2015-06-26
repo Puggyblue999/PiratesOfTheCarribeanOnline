@@ -7,6 +7,8 @@ import time
 import hmac
 import hashlib
 import json
+from pirates.pirate.HumanDNA import HumanDNA
+
 
 class LocalAccountDB:
     def __init__(self, csm):
@@ -207,6 +209,88 @@ class LoginAccountFSM(OperationFSM):
         self.csm.sendUpdateToChannel(self.target, 'acceptLogin', [])
         self.demand('Off')
 
+
+class CreateAvatarFSM(OperationFSM):
+    notify = directNotify.newCategory('CreateAvatarFSM')
+
+    def enterStart(self, dna, index):
+        self.index = index
+        self.dna = dna
+
+        # Okay, we're good to go, let's query their account.
+        self.demand('RetrieveAccount')
+
+    def enterRetrieveAccount(self):
+        self.csm.air.dbInterface.queryObject(
+            self.csm.air.dbId, self.target, self.__handleRetrieve)
+
+    def __handleRetrieve(self, dclass, fields):
+        if dclass != self.csm.air.dclassesByName['AccountUD']:
+            self.demand('Kill', 'Your account object was not found in the database!')
+            return
+
+        self.account = fields
+
+        self.avList = self.account['ACCOUNT_AV_SET']
+        # Sanitize:
+        self.avList = self.avList[:6]
+        self.avList += [0] * (6-len(self.avList))
+
+        # Make sure the index is open:
+        if self.avList[self.index]:
+            self.demand('Kill', 'This avatar slot is already taken by another avatar!')
+            return
+
+        # Okay, there's space. Let's create the avatar!
+        self.demand('CreateAvatar')
+
+    def enterCreateAvatar(self):
+        dna = HumanDNA()
+        dna.makeFromNetString(self.dna)
+        name = 'Test'
+        pirateFields = {
+            'setName': (name,),
+            'WishNameState': ('',),
+            'WishName': ('',),
+            'setCompositeDNA': dna.getCompositeDNA(),
+            'setDISLid': (self.target,)
+        }
+        self.csm.air.dbInterface.createObject(
+            self.csm.air.dbId,
+            self.csm.air.dclassesByName['DistributedPlayerPirateUD'],
+            pirateFields,
+            self.__handleCreate)
+
+    def __handleCreate(self, avId):
+        if not avId:
+            self.demand('Kill', 'Database failed to create the new avatar object!')
+            return
+
+        self.avId = avId
+        self.demand('StoreAvatar')
+
+    def enterStoreAvatar(self):
+        # Associate the avatar with the account...
+        self.avList[self.index] = self.avId
+        self.csm.air.dbInterface.updateObject(
+            self.csm.air.dbId,
+            self.target,
+            self.csm.air.dclassesByName['AccountUD'],
+            {'ACCOUNT_AV_SET': self.avList},
+            {'ACCOUNT_AV_SET': self.account['ACCOUNT_AV_SET']},
+            self.__handleStoreAvatar)
+
+    def __handleStoreAvatar(self, fields):
+        if fields:
+            self.demand('Kill', 'Database failed to associate the new avatar to your account!')
+            return
+
+        # Otherwise, we're done!
+        self.csm.air.writeServerEvent('avatarCreated', self.avId, self.target, self.dna.encode('hex'), self.index)
+        self.csm.sendUpdateToAccountId(self.target, 'createAvatarResp', [self.avId])
+        self.demand('Off')
+
+
 class ClientServicesManagerUD(DistributedObjectGlobalUD):
     notify = directNotify.newCategory('ClientServicesManagerUD')
 
@@ -279,3 +363,19 @@ class ClientServicesManagerUD(DistributedObjectGlobalUD):
 
     def chooseAvatar(self, avId):
         pass
+
+    def createAvatar(self, dna, index):
+        self.runAccountFSM(CreateAvatarFSM, dna, index)
+
+    def runAccountFSM(self, fsmtype, *args):
+        sender = self.air.getAccountIdFromSender()
+
+        if not sender:
+            self.killAccount(sender, 'Client is not logged in.')
+
+        if sender in self.account2fsm:
+            self.killAccountFSM(sender)
+            return
+
+        self.account2fsm[sender] = fsmtype(self, sender)
+        self.account2fsm[sender].request('Start', *args)

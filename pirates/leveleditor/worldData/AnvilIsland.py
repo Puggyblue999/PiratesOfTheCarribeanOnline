@@ -1,6 +1,6 @@
+# File: A (Python 2.4)
+
 from pandac.PandaModules import Point3, VBase3, Vec4, Vec3
-
-
 objectStruct = {
     'Interact Links': [
         [
@@ -1158,7 +1158,6 @@ objectStruct = {
         '1245890987.89piwanow': '["Objects"]["1164135492.81dzlu"]["Objects"]["1245890987.89piwanow"]',
         '1257277464.2caoconno': '["Objects"]["1164135492.81dzlu"]["Objects"]["1257277464.2caoconno"]',
         '1257277510.51caoconno': '["Objects"]["1164135492.81dzlu"]["Objects"]["1257277510.51caoconno"]' } }
-
 extraInfo = {
     'camPos': Point3(481.69499999999999, 145.91, 29.114000000000001),
     'camHpr': VBase3(68.915999999999997, -10.218500000000001, 0),
