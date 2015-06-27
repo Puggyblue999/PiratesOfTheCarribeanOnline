@@ -179,6 +179,11 @@ class LoginAccountFSM(OperationFSM):
         self.demand('SetAccount')
 
     def enterSetAccount(self):
+        # Sometimes databaseId becomes the cookie..
+        if isinstance(self.databaseId, str):
+            self.databaseId = self.accountId
+            self.accountId = self.cookie
+
         # First, if there's anybody on the account, kill 'em for redundant login:
         dg = PyDatagram()
         dg.addServerHeader(self.csm.GetAccountConnectionChannel(int(self.databaseId)),
