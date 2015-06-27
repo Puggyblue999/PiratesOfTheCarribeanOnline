@@ -295,9 +295,8 @@ class AvatarChooser(DirectObject, StateData):
             self.optionsButton.setColorScale(Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 0.69999999999999996))
 
         self.upgradeButton = DirectButton(parent = self.quitFrame, relief = None, text_scale = 0.050000000000000003, text_fg = (1, 0.90000000000000002, 0.69999999999999996, 0.90000000000000002), text_shadow = PiratesGuiGlobals.TextShadow, text = '\1smallCaps\1%s\2' % PLocalizer.AvatarChooserUpgrade, image = (self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box'), self.model.find('**/avatar_c_C_box_over')), image_scale = 0.37, text_pos = (0, -0.014999999999999999), pos = (0, 0, 0.070000000000000007), command = self.__handleUpgrade)
-        if base.cr.isPaid() == OTPGlobals.AccessFull:
-            self.upgradeButton.hide()
-            self.optionsButton.setPos(0, 0, 0.070000000000000007)
+        self.upgradeButton.hide()
+        self.optionsButton.setPos(0, 0, 0.070000000000000007)
 
         self.disableQuit = base.config.GetBool('location-kiosk', 0)
         if self.disableQuit:
