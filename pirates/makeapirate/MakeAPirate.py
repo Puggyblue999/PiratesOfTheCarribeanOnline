@@ -863,103 +863,103 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         self.pgsRotate = CharGuiSlider(self, parent = self.lowBookModel, text = PLocalizer.RotateSlider, command = self.handleRotateSlider, range = (-1, 1))
         self.pgsRotate.setPos(-0.10000000000000001, 0, -0.070000000000000007)
         self.pgsRotate.setScale(0.5)
-        self.pgsRotate['extraArgs'] = [
-            self.pgsRotate]
-        if self.isNPCEditor and self.wantNPCViewer or self.wantMarketingViewer:
-            self.guiTopBar = DirectFrame(parent = base.a2dTopLeftNs, relief = DGG.FLAT, frameSize = (-1.0, 1.0, -0.10000000000000001, 0.10000000000000001), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), pos = (0.59999999999999998, 0, -0.10000000000000001), scale = 0.5)
-            self.guiTopBar.hide()
-            self.toggleLODFrame = DirectFrame(parent = self.guiTopBar, relief = DGG.FLAT, frameSize = (-0.75, 0.45000000000000001, -0.17999999999999999, 0.10000000000000001), frameColor = (0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 0.29999999999999999), text = PLocalizer.LODFrame, text_scale = 0.10000000000000001, text_pos = (0, -0.14999999999999999), text_align = TextNode.ACenter, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), scale = 1, pos = (1.8, 0, 0.050000000000000003))
-            self.guiBreak = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.59999999999999998, 0.0, 0.0), command = taskMgr.stop, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Break', text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
-            self.exitWithoutSavingButton = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (1.8, 0.0, 0.0), command = self.exitWithoutSaving, frameSize = (-0.089999999999999997, 0.5, -0.059999999999999998, 0.059999999999999998), frameColor = (0.80000000000000004, 0.0, 0.0, 1.0), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Cancel', text_pos = (0.20000000000000001, -0.02), text_scale = 0.080000000000000002)
-            self.filterControlsToggle = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (1.2, 0.0, 0.0), command = self.toggleFilterControls, frameSize = (-0.089999999999999997, 0.5, -0.059999999999999998, 0.059999999999999998), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Filter Controls', text_pos = (0.20000000000000001, -0.02), text_scale = 0.080000000000000002)
-            self.animControlsToggle = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.59999999999999998, 0.0, -0.14999999999999999), command = self.toggleAnimControls, frameSize = (-0.089999999999999997, 0.5, -0.059999999999999998, 0.059999999999999998), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Anim Controls', text_pos = (0.20000000000000001, -0.02), text_scale = 0.080000000000000002)
-            self.guiHiToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.29999999999999999, 0.0, 0.0), command = self.handleHiLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODHi, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
-            self.guiMedToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.0, 0.0, 0.0), command = self.handleMedLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODMed, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
-            self.guiLowToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (-0.29999999999999999, 0.0, 0.0), command = self.handleLowLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODLow, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
-            self.guiSuperLowToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (-0.59999999999999998, 0.0, 0.0), command = self.handleSuperLowLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODSuperLow, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
-            self.guiTextureInfoBox = DirectFrame(parent = self.guiTopBar, text_fg = (1, 1, 1, 1), scale = 0.080000000000000002, pos = (2.5, 0, -0.5))
-            self.guiTextureInfoBox.setBin('gui-popup', 0)
-            self.guiTextureInfo = { }
-            self.guiTextureInfo['HAT'] = DirectLabel(parent = self.guiTextureInfoBox, text_fg = (1, 1, 1, 1), pos = (0, 0, 7.5))
-            self.guiTextureInfo['SHIRT'] = DirectLabel(parent = self.guiTextureInfoBox, text_fg = (1, 1, 1, 1), pos = (0, 0, 6.5))
-            self.guiTextureInfo['VEST'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 5.5))
-            self.guiTextureInfo['COAT'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 4.5))
-            self.guiTextureInfo['PANT'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 3.5))
-            self.guiTextureInfo['BELT'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 2.5))
-            self.guiTextureInfo['SOCK'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 1.5))
-            self.guiTextureInfo['SHOE'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 1.5))
-            self.guiResetButton = DirectButton(parent = self.guiTopBar, relief = DGG.RAISED, pos = (0.69999999999999996, 0.0, 0.0), scale = 0.59999999999999998, command = self.handleReset, frameColor = (1, 0, 0, 0.5), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = PLocalizer.ResetButton, text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
-            self.toggleFilterFrame = DirectFrame(parent = base.a2dTopRightNs, relief = DGG.FLAT, frameSize = (-0.34999999999999998, 1.2, -0.40000000000000002, 0.10000000000000001), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 0.5), scale = 0.5, pos = (-1.7, 0, -0.25))
-            self.toggleFilterFrame.hide()
-            DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Version', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, 0))
-            self.filterVersionMenu = DirectOptionMenu(parent = self.toggleFilterFrame, scale = 0.080000000000000002, items = [
-                'All',
-                'NOT_LIVE',
-                'READY_TO_GO_LIVE',
-                'LIVE'], initialitem = 0, highlightColor = (0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), pos = (0.0, 0, 0), command = self.updateFilter)
-            self.filterPrintButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.RAISED, pos = (0.80000000000000004, 0.0, -0.080000000000000002), command = self.printFilteredChoices, frameSize = (-0.14999999999999999, 0.14999999999999999, -0.040000000000000001, 0.040000000000000001), borderWidth = (0.01, 0.01), text = 'PRINT', text_pos = (0, -0.025000000000000001), text_scale = 0.080000000000000002)
-            DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Rarity', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, -0.11))
-            self.filterRarityMenu = DirectOptionMenu(parent = self.toggleFilterFrame, scale = 0.080000000000000002, items = [
-                'All',
-                'CRUDE',
-                'COMMON',
-                'RARE',
-                'FAMED',
-                'LEGENDARY'], initialitem = 0, pos = (0.0, 0, -0.11), highlightColor = (0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), command = self.updateFilter)
-            DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Usage', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, -0.22))
-            self.filterUsageLootButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.085000000000000006, 0.0, -0.20000000000000001), scale = 0.40000000000000002, command = lambda : self.updateFilter('Loot'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Loot', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
-            self.filterUsageShopButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.28499999999999998, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Shop'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Shop', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
-            self.filterUsageQuestButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.48499999999999999, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Quest'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Quest', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
-            self.filterUsagePromoButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.68500000000000005, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Promo'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Promo', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
-            self.filterUsagePvpButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.88500000000000001, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Pvp'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'PVP', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
-            self.filterUsageNpcButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (1.085, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Npc'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'NPC', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
-            DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Holiday', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, -0.33000000000000002))
-            self.filterHolidayMenu = DirectOptionMenu(parent = self.toggleFilterFrame, scale = 0.080000000000000002, items = [
-                'All'] + CATALOG_HOLIDAYS.keys(), initialitem = 0, highlightColor = (0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), pos = (0.0, 0, -0.33000000000000002), command = self.updateFilter)
-            self.toggleAnimFrame = DirectFrame(parent = base.a2dTopRightNs, relief = DGG.FLAT, frameSize = (-0.34999999999999998, 0.59999999999999998, -0.40000000000000002, 0.10000000000000001), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 0.5), text = PLocalizer.AnimateFrame, text_scale = 0.10000000000000001, text_pos = (-0.14999999999999999, -0.025000000000000001), text_align = TextNode.ACenter, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), scale = 0.5, pos = (-1, 0, -0.39000000000000001))
-            self.toggleAnimFrame.hide()
-            self.stopAnimButton = DirectButton(parent = self.toggleAnimFrame, relief = DGG.RAISED, pos = (0.29999999999999999, 0.0, 0.0), command = self.stopAnim, frameSize = (-0.20000000000000001, 0.20000000000000001, -0.059999999999999998, 0.059999999999999998), borderWidth = (0.01, 0.01), text = 'PAUSE', text_pos = (0, -0.025000000000000001), text_scale = 0.080000000000000002)
-            self.guiNextToggleAnim = DirectButton(parent = self.toggleAnimFrame, relief = DGG.RAISED, pos = (0.29999999999999999, 0.0, 0.0), command = self.handleNextAnim, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.MakeAPirateNextAnim, text_pos = (0, -0.014999999999999999), text_scale = 0.10000000000000001)
-            self.guiNextToggleAnim.hide()
-            self.guiLastToggleAnim = DirectButton(parent = self.toggleAnimFrame, relief = DGG.RAISED, pos = (-0.29999999999999999, 0.0, 0.0), command = self.handleLastAnim, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.MakeAPirateLastAnim, text_pos = (0, -0.014999999999999999), text_scale = 0.10000000000000001)
-            self.guiLastToggleAnim.hide()
-            self.pgsAnimSpeed = DirectSlider(parent = self.toggleAnimFrame, text = PLocalizer.AnimSpeedSlider, text_scale = 0.59999999999999998, text_pos = (-4.7999999999999998, -0.14000000000000001), text_align = TextNode.ALeft, text_fg = (1, 1, 1, 1), pos = (0.23000000000000001, 0, -0.10000000000000001), value = 1, borderWidth = (0.040000000000000001, 0.040000000000000001), frameSize = (-3.0, 3.0, -0.29999999999999999, 0.29999999999999999), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), scale = 0.11, range = (-1, 1), command = self.handleAnimSpeedSlider)
-            self.pgsAnimSpeed['extraArgs'] = [
-                self.pgsAnimSpeed]
-            self.pgsAnimPos = DirectSlider(parent = self.toggleAnimFrame, pos = (0.23000000000000001, 0, -0.40000000000000002), thumb_relief = DGG.FLAT, value = 1, thumb_text = '1', thumb_text_scale = 0.14999999999999999, scale = 0.5, range = (1, 96), command = self.handleAnimPosSlider)
-            self.pgsAnimPos['extraArgs'] = [
-                self.pgsAnimPos]
-            self.pgsAnimPos.hide()
-            self.pgsAvHPos = DirectSlider(parent = self.toggleAnimFrame, text = PLocalizer.AvHPosSlider, text_scale = 0.59999999999999998, text_pos = (-4.7999999999999998, -0.14000000000000001), text_align = TextNode.ALeft, text_fg = (1, 1, 1, 1), pos = (0.23000000000000001, 0, -0.20000000000000001), value = 0, borderWidth = (0.040000000000000001, 0.040000000000000001), frameSize = (-3.0, 3.0, -0.29999999999999999, 0.29999999999999999), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), scale = 0.11, range = (-1, 6), command = self.handleAvHPosSlider)
-            self.pgsAvHPos['extraArgs'] = [
-                self.pgsAvHPos]
-            self.pgsAvVPos = DirectSlider(parent = self.toggleAnimFrame, text = PLocalizer.AvVPosSlider, text_scale = 0.59999999999999998, text_pos = (-4.7999999999999998, -0.14000000000000001), text_align = TextNode.ALeft, text_fg = (1, 1, 1, 1), pos = (0.23000000000000001, 0, -0.29999999999999999), value = 0, borderWidth = (0.040000000000000001, 0.040000000000000001), frameSize = (-3.0, 3.0, -0.29999999999999999, 0.29999999999999999), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), scale = 0.11, range = (-1, 6), command = self.handleAvVPosSlider)
-            self.pgsAvVPos['extraArgs'] = [
-                self.pgsAvVPos]
-            anim_count = len(AnimList)
-            listTop = anim_count * 0.065000000000000002
-            listBottom = -anim_count * 0.065000000000000002
-            self.guiAnimScrolledBox = DirectScrolledFrame(parent = self.toggleAnimFrame, canvasSize = (-1, 0.80000000000000004, listBottom - 0.14999999999999999, listTop), frameSize = (-1, 0.90000000000000002, -0.25, 1), scale = 0.59999999999999998, pos = (1.3999999999999999, 0, -0.29999999999999999), manageScrollBars = True, autoHideScrollBars = True, verticalScroll_resizeThumb = False)
-            animButtons = []
-            for anim in AnimList:
-                animButtons.append(DirectButton(parent = self.guiAnimScrolledBox.getCanvas(), text = (anim, anim, anim, anim), text_align = TextNode.ALeft, text_pos = (0, -0.29999999999999999), pos = (-0.90000000000000002, 0, listTop - (AnimList.index(anim) + 1) * 0.13), frameSize = (-0.5, 16, -0.59999999999999998, 0.69999999999999996), scale = 0.10000000000000001, extraArgs = [
-                    anim], command = self.handleSetAnim))
+        self.pgsRotate['extraArgs'] = [self.pgsRotate]
 
-            propDict = CustomAnims.getHandHeldPropsDict()
-            propNames = propDict.keys()
-            propNames.sort()
-            propNames.insert(0, 'None')
-            prop_count = len(propNames)
-            listTop = prop_count * 0.065000000000000002
-            listBottom = -prop_count * 0.065000000000000002
-            self.guiPropScrolledBox = DirectScrolledFrame(parent = self.toggleAnimFrame, canvasSize = (-1, 0.29999999999999999, listBottom - 0.14999999999999999, listTop), frameSize = (-1, 0.40000000000000002, -0.25, 0.84999999999999998), scale = 0.59999999999999998, pos = (1.7, 0, -1), manageScrollBars = True, autoHideScrollBars = True, verticalScroll_resizeThumb = False)
-            propButtons = []
-            for prop in propNames:
-                propButtons.append(DirectButton(parent = self.guiPropScrolledBox.getCanvas(), text = (prop, prop, prop, prop), text_align = TextNode.ALeft, text_pos = (0, -0.29999999999999999), pos = (-0.90000000000000002, 0, listTop - (propNames.index(prop) + 1) * 0.13), frameSize = (-0.5, 16, -0.59999999999999998, 0.69999999999999996), scale = 0.10000000000000001, extraArgs = [
-                    prop], command = self.handleSetProp))
+        self.guiTopBar = DirectFrame(parent = base.a2dTopLeftNs, relief = DGG.FLAT, frameSize = (-1.0, 1.0, -0.10000000000000001, 0.10000000000000001), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), pos = (0.59999999999999998, 0, -0.10000000000000001), scale = 0.5)
+        self.guiTopBar.hide()
+        self.toggleLODFrame = DirectFrame(parent = self.guiTopBar, relief = DGG.FLAT, frameSize = (-0.75, 0.45000000000000001, -0.17999999999999999, 0.10000000000000001), frameColor = (0.90000000000000002, 0.90000000000000002, 0.90000000000000002, 0.29999999999999999), text = PLocalizer.LODFrame, text_scale = 0.10000000000000001, text_pos = (0, -0.14999999999999999), text_align = TextNode.ACenter, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), scale = 1, pos = (1.8, 0, 0.050000000000000003))
+        self.zoomTaskButton = DirectButton(parent = self.toggleLODFrame, relief = DGG.SUNKEN, pos = (0.90000000000000002, 0.0, 0.0), command = self.toggleZoomTask, frameSize = (-0.14000000000000001, 0.14000000000000001, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'ZoomTask', text_pos = (0, -0.014999999999999999), text_scale = 0.059999999999999998)
+        self.guiBreak = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.59999999999999998, 0.0, 0.0), command = taskMgr.stop, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Break', text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
+        self.exitWithoutSavingButton = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (1.8, 0.0, 0.0), command = self.exitWithoutSaving, frameSize = (-0.089999999999999997, 0.5, -0.059999999999999998, 0.059999999999999998), frameColor = (0.80000000000000004, 0.0, 0.0, 1.0), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Cancel', text_pos = (0.20000000000000001, -0.02), text_scale = 0.080000000000000002)
+        self.filterControlsToggle = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (1.2, 0.0, 0.0), command = self.toggleFilterControls, frameSize = (-0.089999999999999997, 0.5, -0.059999999999999998, 0.059999999999999998), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Filter Controls', text_pos = (0.20000000000000001, -0.02), text_scale = 0.080000000000000002)
+        self.animControlsToggle = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.59999999999999998, 0.0, -0.14999999999999999), command = self.toggleAnimControls, frameSize = (-0.089999999999999997, 0.5, -0.059999999999999998, 0.059999999999999998), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = 'Anim Controls', text_pos = (0.20000000000000001, -0.02), text_scale = 0.080000000000000002)
+        self.guiHiToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.29999999999999999, 0.0, 0.0), command = self.handleHiLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODHi, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
+        self.guiMedToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (0.0, 0.0, 0.0), command = self.handleMedLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODMed, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
+        self.guiLowToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (-0.29999999999999999, 0.0, 0.0), command = self.handleLowLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODLow, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
+        self.guiSuperLowToggleLOD = DirectButton(parent = self.toggleLODFrame, relief = DGG.RAISED, pos = (-0.59999999999999998, 0.0, 0.0), command = self.handleSuperLowLOD, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.LODSuperLow, text_pos = (0, -0.014999999999999999), text_scale = 0.080000000000000002)
+        self.guiTextureInfoBox = DirectFrame(parent = self.guiTopBar, text_fg = (1, 1, 1, 1), scale = 0.080000000000000002, pos = (2.5, 0, -0.5))
+        self.guiTextureInfoBox.setBin('gui-popup', 0)
+        self.guiTextureInfo = { }
+        self.guiTextureInfo['HAT'] = DirectLabel(parent = self.guiTextureInfoBox, text_fg = (1, 1, 1, 1), pos = (0, 0, 7.5))
+        self.guiTextureInfo['SHIRT'] = DirectLabel(parent = self.guiTextureInfoBox, text_fg = (1, 1, 1, 1), pos = (0, 0, 6.5))
+        self.guiTextureInfo['VEST'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 5.5))
+        self.guiTextureInfo['COAT'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 4.5))
+        self.guiTextureInfo['PANT'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 3.5))
+        self.guiTextureInfo['BELT'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 2.5))
+        self.guiTextureInfo['SOCK'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 1.5))
+        self.guiTextureInfo['SHOE'] = DirectLabel(parent = self.guiTextureInfoBox, pos = (0, 0, 1.5))
+        self.guiResetButton = DirectButton(parent = self.guiTopBar, relief = DGG.RAISED, pos = (0.69999999999999996, 0.0, 0.0), scale = 0.59999999999999998, command = self.handleReset, frameColor = (1, 0, 0, 0.5), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = PLocalizer.ResetButton, text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
+        self.toggleFilterFrame = DirectFrame(parent = base.a2dTopRightNs, relief = DGG.FLAT, frameSize = (-0.34999999999999998, 1.2, -0.40000000000000002, 0.10000000000000001), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 0.5), scale = 0.5, pos = (-1.7, 0, -0.25))
+        self.toggleFilterFrame.hide()
+        DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Version', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, 0))
+        self.filterVersionMenu = DirectOptionMenu(parent = self.toggleFilterFrame, scale = 0.080000000000000002, items = [
+            'All',
+            'NOT_LIVE',
+            'READY_TO_GO_LIVE',
+            'LIVE'], initialitem = 0, highlightColor = (0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), pos = (0.0, 0, 0), command = self.updateFilter)
+        self.filterPrintButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.RAISED, pos = (0.80000000000000004, 0.0, -0.080000000000000002), command = self.printFilteredChoices, frameSize = (-0.14999999999999999, 0.14999999999999999, -0.040000000000000001, 0.040000000000000001), borderWidth = (0.01, 0.01), text = 'PRINT', text_pos = (0, -0.025000000000000001), text_scale = 0.080000000000000002)
+        DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Rarity', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, -0.11))
+        self.filterRarityMenu = DirectOptionMenu(parent = self.toggleFilterFrame, scale = 0.080000000000000002, items = [
+            'All',
+            'CRUDE',
+            'COMMON',
+            'RARE',
+            'FAMED',
+            'LEGENDARY'], initialitem = 0, pos = (0.0, 0, -0.11), highlightColor = (0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), command = self.updateFilter)
+        DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Usage', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, -0.22))
+        self.filterUsageLootButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.085000000000000006, 0.0, -0.20000000000000001), scale = 0.40000000000000002, command = lambda : self.updateFilter('Loot'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Loot', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
+        self.filterUsageShopButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.28499999999999998, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Shop'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Shop', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
+        self.filterUsageQuestButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.48499999999999999, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Quest'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Quest', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
+        self.filterUsagePromoButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.68500000000000005, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Promo'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'Promo', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
+        self.filterUsagePvpButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (0.88500000000000001, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Pvp'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'PVP', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
+        self.filterUsageNpcButton = DirectButton(parent = self.toggleFilterFrame, relief = DGG.SUNKEN, pos = (1.085, 0.0, -0.20000000000000001), scale = 0.34999999999999998, command = lambda : self.updateFilter('Npc'), frameSize = (-0.25, 0.25, -0.10000000000000001, 0.10000000000000001), borderWidth = (0.02, 0.02), text = 'NPC', text_pos = (0, -0.050000000000000003), text_scale = 0.20000000000000001, text_align = TextNode.ACenter)
+        DirectLabel(parent = self.toggleFilterFrame, scale = 0.080000000000000002, text = 'Holiday', frameColor = (1, 1, 1, 0), pos = (-0.20000000000000001, 0, -0.33000000000000002))
+        self.filterHolidayMenu = DirectOptionMenu(parent = self.toggleFilterFrame, scale = 0.080000000000000002, items = [
+            'All'] + CATALOG_HOLIDAYS.keys(), initialitem = 0, highlightColor = (0.65000000000000002, 0.65000000000000002, 0.65000000000000002, 1), pos = (0.0, 0, -0.33000000000000002), command = self.updateFilter)
+        self.toggleAnimFrame = DirectFrame(parent = base.a2dTopRightNs, relief = DGG.FLAT, frameSize = (-0.34999999999999998, 0.59999999999999998, -0.40000000000000002, 0.10000000000000001), frameColor = (0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 0.5), text = PLocalizer.AnimateFrame, text_scale = 0.10000000000000001, text_pos = (-0.14999999999999999, -0.025000000000000001), text_align = TextNode.ACenter, text_fg = (1, 1, 1, 1), text_shadow = (0, 0, 0, 1), scale = 0.5, pos = (-1, 0, -0.39000000000000001))
+        self.toggleAnimFrame.hide()
+        self.stopAnimButton = DirectButton(parent = self.toggleAnimFrame, relief = DGG.RAISED, pos = (0.29999999999999999, 0.0, 0.0), command = self.stopAnim, frameSize = (-0.20000000000000001, 0.20000000000000001, -0.059999999999999998, 0.059999999999999998), borderWidth = (0.01, 0.01), text = 'PAUSE', text_pos = (0, -0.025000000000000001), text_scale = 0.080000000000000002)
+        self.guiNextToggleAnim = DirectButton(parent = self.toggleAnimFrame, relief = DGG.RAISED, pos = (0.29999999999999999, 0.0, 0.0), command = self.handleNextAnim, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.MakeAPirateNextAnim, text_pos = (0, -0.014999999999999999), text_scale = 0.10000000000000001)
+        self.guiNextToggleAnim.hide()
+        self.guiLastToggleAnim = DirectButton(parent = self.toggleAnimFrame, relief = DGG.RAISED, pos = (-0.29999999999999999, 0.0, 0.0), command = self.handleLastAnim, frameSize = (-0.089999999999999997, 0.089999999999999997, -0.050000000000000003, 0.050000000000000003), borderWidth = (0.0080000000000000002, 0.0080000000000000002), text = PLocalizer.MakeAPirateLastAnim, text_pos = (0, -0.014999999999999999), text_scale = 0.10000000000000001)
+        self.guiLastToggleAnim.hide()
+        self.pgsAnimSpeed = DirectSlider(parent = self.toggleAnimFrame, text = PLocalizer.AnimSpeedSlider, text_scale = 0.59999999999999998, text_pos = (-4.7999999999999998, -0.14000000000000001), text_align = TextNode.ALeft, text_fg = (1, 1, 1, 1), pos = (0.23000000000000001, 0, -0.10000000000000001), value = 1, borderWidth = (0.040000000000000001, 0.040000000000000001), frameSize = (-3.0, 3.0, -0.29999999999999999, 0.29999999999999999), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), scale = 0.11, range = (-1, 1), command = self.handleAnimSpeedSlider)
+        self.pgsAnimSpeed['extraArgs'] = [
+            self.pgsAnimSpeed]
+        self.pgsAnimPos = DirectSlider(parent = self.toggleAnimFrame, pos = (0.23000000000000001, 0, -0.40000000000000002), thumb_relief = DGG.FLAT, value = 1, thumb_text = '1', thumb_text_scale = 0.14999999999999999, scale = 0.5, range = (1, 96), command = self.handleAnimPosSlider)
+        self.pgsAnimPos['extraArgs'] = [
+            self.pgsAnimPos]
+        self.pgsAnimPos.hide()
+        self.pgsAvHPos = DirectSlider(parent = self.toggleAnimFrame, text = PLocalizer.AvHPosSlider, text_scale = 0.59999999999999998, text_pos = (-4.7999999999999998, -0.14000000000000001), text_align = TextNode.ALeft, text_fg = (1, 1, 1, 1), pos = (0.23000000000000001, 0, -0.20000000000000001), value = 0, borderWidth = (0.040000000000000001, 0.040000000000000001), frameSize = (-3.0, 3.0, -0.29999999999999999, 0.29999999999999999), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), scale = 0.11, range = (-1, 6), command = self.handleAvHPosSlider)
+        self.pgsAvHPos['extraArgs'] = [
+            self.pgsAvHPos]
+        self.pgsAvVPos = DirectSlider(parent = self.toggleAnimFrame, text = PLocalizer.AvVPosSlider, text_scale = 0.59999999999999998, text_pos = (-4.7999999999999998, -0.14000000000000001), text_align = TextNode.ALeft, text_fg = (1, 1, 1, 1), pos = (0.23000000000000001, 0, -0.29999999999999999), value = 0, borderWidth = (0.040000000000000001, 0.040000000000000001), frameSize = (-3.0, 3.0, -0.29999999999999999, 0.29999999999999999), frameColor = (0.5, 0.5, 0.5, 0.29999999999999999), scale = 0.11, range = (-1, 6), command = self.handleAvVPosSlider)
+        self.pgsAvVPos['extraArgs'] = [
+            self.pgsAvVPos]
+        anim_count = len(AnimList)
+        listTop = anim_count * 0.065000000000000002
+        listBottom = -anim_count * 0.065000000000000002
+        self.guiAnimScrolledBox = DirectScrolledFrame(parent = self.toggleAnimFrame, canvasSize = (-1, 0.80000000000000004, listBottom - 0.14999999999999999, listTop), frameSize = (-1, 0.90000000000000002, -0.25, 1), scale = 0.59999999999999998, pos = (1.3999999999999999, 0, -0.29999999999999999), manageScrollBars = True, autoHideScrollBars = True, verticalScroll_resizeThumb = False)
+        animButtons = []
+        for anim in AnimList:
+            animButtons.append(DirectButton(parent = self.guiAnimScrolledBox.getCanvas(), text = (anim, anim, anim, anim), text_align = TextNode.ALeft, text_pos = (0, -0.29999999999999999), pos = (-0.90000000000000002, 0, listTop - (AnimList.index(anim) + 1) * 0.13), frameSize = (-0.5, 16, -0.59999999999999998, 0.69999999999999996), scale = 0.10000000000000001, extraArgs = [
+                anim], command = self.handleSetAnim))
 
-            self.loadNPCButton()
-            self.NPCGui = NPCGUI.NPCGUI(self)
+        propDict = CustomAnims.getHandHeldPropsDict()
+        propNames = propDict.keys()
+        propNames.sort()
+        propNames.insert(0, 'None')
+        prop_count = len(propNames)
+        listTop = prop_count * 0.065000000000000002
+        listBottom = -prop_count * 0.065000000000000002
+        self.guiPropScrolledBox = DirectScrolledFrame(parent = self.toggleAnimFrame, canvasSize = (-1, 0.29999999999999999, listBottom - 0.14999999999999999, listTop), frameSize = (-1, 0.40000000000000002, -0.25, 0.84999999999999998), scale = 0.59999999999999998, pos = (1.7, 0, -1), manageScrollBars = True, autoHideScrollBars = True, verticalScroll_resizeThumb = False)
+        propButtons = []
+        for prop in propNames:
+            propButtons.append(DirectButton(parent = self.guiPropScrolledBox.getCanvas(), text = (prop, prop, prop, prop), text_align = TextNode.ALeft, text_pos = (0, -0.29999999999999999), pos = (-0.90000000000000002, 0, listTop - (propNames.index(prop) + 1) * 0.13), frameSize = (-0.5, 16, -0.59999999999999998, 0.69999999999999996), scale = 0.10000000000000001, extraArgs = [
+                prop], command = self.handleSetProp))
+
+        self.loadNPCButton()
+        self.NPCGui = NPCGUI.NPCGUI(self)
 
         self.pirate = DynamicHuman.DynamicHuman()
         if self.avList[self.index] and self.avList[self.index] != OTPGlobals.AvatarSlotAvailable:
